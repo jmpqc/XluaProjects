@@ -25,7 +25,7 @@ public class HotFixScript : MonoBehaviour {
 
     private byte[] MyLoader(ref string filePath)
     {
-        string absPath = @"C:\Users\dream\Desktop\XLuaActual Combat\XluaProjects\PlayerGamePackage\" + filePath + ".lua.txt";
+        string absPath = @"C:\Users\dream\Desktop\XLuaActualCombat\XluaProjects\PlayerGamePackage\" + filePath + ".lua.txt";
         return System.Text.Encoding.UTF8.GetBytes(File.ReadAllText(absPath));
     }
 
