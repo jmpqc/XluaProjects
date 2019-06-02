@@ -94,3 +94,21 @@ util.hotfix_ex(CS.InvisibleBoss, 'Start', function(self)
 	self.m_reduceDiamond = self.m_reduceDiamond - 5
 end)
 --*********************************************************************************************************************************--
+--1.3.1.boss撞击玩家当钻石金币不够时会产生负数。
+util.hotfix_ex(CS.Gun, 'GoldChange', function(self, number)
+	self:GoldChange(number)
+	if self.gold < 0 then
+		self.gold = 0
+	end
+end)
+
+util.hotfix_ex(CS.Gun, 'DiamandsChange', function(self, number)
+	self:DiamandsChange(number)
+	if self.diamands < 0 then
+		self.diamands = 0
+	end
+end)--******************************************--
+
+
+
+--*********************************************************************************************************************************--

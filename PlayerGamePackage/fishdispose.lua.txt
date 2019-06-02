@@ -8,3 +8,6 @@ xlua.hotfix(CS.Fire, 'Start', nil)
 xlua.hotfix(CS.Boss, 'Start', nil)
 xlua.hotfix(CS.DeffendBoss, 'Start', nil)
 xlua.hotfix(CS.InvisibleBoss, 'Start', nil)
+
+xlua.hotfix(CS.Gun, 'GoldChange', nil)
+xlua.hotfix(CS.Gun, 'DiamandsChange', nil)
