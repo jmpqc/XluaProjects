@@ -27,9 +27,18 @@ xlua.hotfix(CS.Gun, 'Attack', function(self)
 		return
 	end
 	--1.2.1 over
-
+	    --[[
 		if self.gold < 1 + (self.gunLevel - 1) * 2 or gold == 0 then
 			return
+		end
+		--]]
+		--1.3.2  炮台3太强，且钻石没用处，不削弱，只有氪金才可使用。
+		if self.gunLevel == 3 and self.diamands < 3 then
+			return
+		elseif self.gunLevel ~= 3 then
+			if self.gold < 1 + (self.gunLevel - 1) * 2 or gold == 0 then
+				return
+			end
 		end
 
 		self.bullectAudio.clip = self.bullectAudios[self.gunLevel - 1]
@@ -44,7 +53,11 @@ xlua.hotfix(CS.Gun, 'Attack', function(self)
 		UnityEngine.GameObject.Instantiate(self.Bullects[self.gunLevel - 1], self.attackPos.position, self.attackPos.rotation)
 
 		if not self.canShootForFree then
-			self:GoldChange(-1 - (self.gunLevel -1) * 2)
+			if self.gunLevel == 3 then
+				self:DiamandsChange(-3)
+			else
+				self:GoldChange(-1 - (self.gunLevel -1) * 2)
+			end
 		end
 
 		self.attackCD = 0
@@ -93,4 +106,22 @@ util.hotfix_ex(CS.InvisibleBoss, 'Start', function(self)
 	self:Start()
 	self.m_reduceDiamond = self.m_reduceDiamond - 5
 end)
+--*********************************************************************************************************************************--
+--1.3.1.boss撞击玩家当钻石金币不够时会产生负数。
+util.hotfix_ex(CS.Gun, 'GoldChange', function(self, number)
+	self:GoldChange(number)
+	if self.gold < 0 then
+		self.gold = 0
+	end
+end)
+
+util.hotfix_ex(CS.Gun, 'DiamandsChange', function(self, number)
+	self:DiamandsChange(number)
+	if self.diamands < 0 then
+		self.diamands = 0
+	end
+end)--******************************************--
+
+
+
 --*********************************************************************************************************************************--

@@ -75,8 +75,8 @@ public class Gun : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        gold = 1000;
-        diamands = 1000;
+        gold = 100;
+        diamands = 100;
         level = 2;
         bullectAudio = GetComponent<AudioSource>();
     }
@@ -238,7 +238,7 @@ public class Gun : MonoBehaviour
     }
 
     //增减金钱
-
+    [LuaCallCSharp]
     public void GoldChange(int number)
     {
         if (canGetDoubleGold)
@@ -254,7 +254,7 @@ public class Gun : MonoBehaviour
     }
 
     //增减钻石
-
+    [LuaCallCSharp]
     public void DiamandsChange(int number)
     {
 
