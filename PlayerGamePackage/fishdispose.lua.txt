@@ -18,3 +18,5 @@ xlua.hotfix(CS.Boss, 'TakeDamage', nil)
 
 xlua.hotfix(CS.GunImage, 'RotateGun', nil)
 xlua.hotfix(CS.Gun,  'RotateGun', nil)
+
+xlua.hotfix(CS.LoadAssetsForLua, 'Start', nil)
