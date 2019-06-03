@@ -3,8 +3,7 @@ using XLua;
 
 [Hotfix]
 public class LoadAssetsForLua : MonoBehaviour {
-
-	// Use this for initialization
+    // Use this for initialization
     [LuaCallCSharp]
 	void Start () {
 		
