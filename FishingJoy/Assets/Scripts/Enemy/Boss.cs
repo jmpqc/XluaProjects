@@ -91,7 +91,7 @@ public class Boss : MonoBehaviour
         }
 
     }
-
+    [LuaCallCSharp]
     public virtual void TakeDamage(int attackValue)
     {
         if (Gun.Instance.Fire)

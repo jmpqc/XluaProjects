@@ -184,3 +184,55 @@ xlua.hotfix(CS.CreateFish, 'Update', function(self)
 end)
 
 --*********************************************************************************************************************************--
+--1.4..1   扑鱼是考虑了鱼的血量与子弹的伤害来模拟概率，这样玩家体验不好，要使用传统的概率来扑鱼。
+xlua.private_accessible(CS.Fish)
+xlua.hotfix(CS.Fish, 'TakeDamage', function(self, attackValue)
+        if CS.Gun.Instance.Fire then        
+            attackValue = attackValue * 2
+        end
+
+        local catchValue = UnityEngine.Mathf.Floor(UnityEngine.Random.Range(0, 100))
+
+        if catchValue <= (50 - (self.hp - attackValue))/2 then
+        
+            self.isDead = true;
+
+            for i = 0, 8 do            
+                UnityEngine.GameObject.Instantiate(self.pao, self.transform.position, UnityEngine.Quaternion.Euler(self.transform.eulerAngles + UnityEngine.Vector3(0, 45 * i, 0)))
+            end
+
+            self.gameObjectAni:SetTrigger("Die")
+            self:Invoke("Prize", 0.7)
+        end
+
+end)
+
+xlua.hotfix(CS.Boss, 'TakeDamage', function(self, attackValue)
+        if CS.Gun.Instance.Fire then
+            attackValue = attackValue * 2
+        end
+
+        local catchValue = UnityEngine.Mathf.Floor(UnityEngine.Random.Range(0, 100))
+
+        if catchValue <= (catchValue * 3 - self.hp / 10) then
+        
+            UnityEngine.GameObject.Instantiate(self.deadEeffect, self.transform.position, self.transform.rotation)
+            CS.Gun.Instance:GoldChange(self.GetGold * 10)
+            CS.Gun.Instance:DiamandsChange(self.GetDiamands * 10)
+
+            for i = 0, 10 do
+            
+                local itemGo = UnityEngine.GameObject.Instantiate(self.gold, self.transform.position, UnityEngine.Quaternion.Euler(self.transform.eulerAngles + UnityEngine.Vector3(0, 18 + 36 * (i - 1), 0)))
+                itemGo:GetComponent('Gold').bossPrize = true
+            end
+            for i = 0, 10 do
+            
+                local itemGo1 = UnityEngine.GameObject.Instantiate(self.diamands, self.transform.position, UnityEngine.Quaternion.Euler(self.transform.eulerAngles + UnityEngine.Vector3(0, 36 + 36 * (i - 1), 0)))
+                itemGo1:GetComponent('Gold').bossPrize = true
+            end
+            UnityEngine.GameObject.Destroy(self.gameObject)
+        end
+end)
+
+
+--*********************************************************************************************************************************--
