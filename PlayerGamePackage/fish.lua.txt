@@ -233,6 +233,22 @@ xlua.hotfix(CS.Boss, 'TakeDamage', function(self, attackValue)
             UnityEngine.GameObject.Destroy(self.gameObject)
         end
 end)
+--******************************************--
+--1.4.2 炮台移动是根据鼠标的水平数值滑动来模拟跟随的，改为玩家按下ad键来旋转炮台。
+xlua.private_accessible(CS.GunImage)
+xlua.hotfix(CS.GunImage, 'RotateGun', function(self)
+	h = UnityEngine.Input.GetAxis("Horizontal")
+    self.transform:Rotate(-UnityEngine.Vector3.forward * h * self.rotateSpeed)
 
+	self:ClampAngle()
 
+end)
+
+xlua.hotfix(CS.Gun,  'RotateGun', function(self)
+	h = UnityEngine.Input.GetAxis("Horizontal")
+    self.transform:Rotate(-UnityEngine.Vector3.forward * h * self.rotateSpeed)
+
+	self:ClampAngle()
+
+end)
 --*********************************************************************************************************************************--
