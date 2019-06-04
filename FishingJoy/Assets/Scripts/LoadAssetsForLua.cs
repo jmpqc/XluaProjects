@@ -3,6 +3,10 @@ using XLua;
 
 [Hotfix]
 public class LoadAssetsForLua : MonoBehaviour {
+    private void Awake()
+    {
+        
+    }
     // Use this for initialization
     [LuaCallCSharp]
 	void Start () {
@@ -13,4 +17,9 @@ public class LoadAssetsForLua : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
 }
