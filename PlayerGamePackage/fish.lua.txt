@@ -124,15 +124,33 @@ end)
 --******************************************--
 --1.3.3  大鱼太多
 
+local canCreateNewFish = true
+local changeMapTimeVal = 0
+
 xlua.hotfix(CS.LoadAssetsForLua, 'Start', function(self)
 	CS.LoadAssets.LoadAsset('level3fish3','gameobject\\enemy.ab')
+	CS.LoadAssets.LoadAsset('SeaWave','gameobject\\wave.ab')
 end)
 
 
 
 xlua.private_accessible(CS.CreateFish)
 xlua.hotfix(CS.CreateFish, 'Update', function(self)
-		
+	
+--2.0.2  生成海浪
+	if canCreateNewFish then
+		if changeMapTimeVal >= 120 then
+			canCreateNewFish = false
+			changeMapTimeVal = 0
+			go = CS.LoadAssets.GetGameObject('SeaWave')
+			UnityEngine.GameObject.Instantiate(go)
+		end
+		changeMapTimeVal = changeMapTimeVal + UnityEngine.Time.deltaTime
+	else		
+		return
+	end
+
+
 	self:CreateALotOfFish()
 
         --单种鱼的生成
@@ -265,3 +283,30 @@ xlua.hotfix(CS.Gun,  'RotateGun', function(self)
 
 end)
 --*********************************************************************************************************************************--
+--2.0.2 增加浪潮功能
+xlua.private_accessible(CS.HotfixEmpty)
+
+xlua.hotfix(CS.HotfixEmpty, 'Start', function(self)
+	self:Invoke('BehaviourMethod1',8)
+end)
+
+
+xlua.hotfix(CS.HotfixEmpty, 'BehaviourMethod1', function(self)
+	CS.Gun.Instance.level = CS.Gun.Instance.level + 1
+	if CS.Gun.Instance.level == 4 then
+		CS.Gun.Instance.level = 1
+	end
+	canCreateNewFish = true
+	CS.Gun.Instance.changeAudio = true
+	UnityEngine.GameObject.Destroy(self.gameObject)
+end)
+
+xlua.hotfix(CS.HotfixEmpty, 'Update', function(self)
+	self.transform:Translate(-self.transform.right * 4 * UnityEngine.Time.deltaTime, UnityEngine.Space.World);
+end)
+
+xlua.hotfix(CS.HotfixEmpty, 'OnTriggerEnter', function(self, other)
+	if other.tag ~= 'Untagged' and other.tag ~= 'Wall' then	
+		UnityEngine.GameObject.Destroy(other.gameObject);
+    end
+end)
