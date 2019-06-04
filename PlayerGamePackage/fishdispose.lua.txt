@@ -20,3 +20,8 @@ xlua.hotfix(CS.GunImage, 'RotateGun', nil)
 xlua.hotfix(CS.Gun,  'RotateGun', nil)
 
 xlua.hotfix(CS.LoadAssetsForLua, 'Start', nil)
+
+xlua.hotfix(CS.HotfixEmpty, 'Start', nil)
+xlua.hotfix(CS.HotfixEmpty, 'Update', nil)
+xlua.hotfix(CS.HotfixEmpty, 'BehaviourMethod1', nil)
+xlua.hotfix(CS.HotfixEmpty, 'OnTriggerEnter', nil)
