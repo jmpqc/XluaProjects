@@ -25,7 +25,13 @@ public class HotFixScript : MonoBehaviour {
 
     private byte[] MyLoader(ref string filePath)
     {
-        string absPath = @"C:\Users\dream\Desktop\XLuaActualCombat\XluaProjects\PlayerGamePackage\" + filePath + ".lua.txt";
+        string absPath = null;
+#if UNITY_EDITOR
+        absPath = @"C:\Users\dream\Desktop\XLuaActualCombat\XluaProjects\PlayerGamePackage\" + filePath + ".lua.txt";
+#else
+        absPath = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase; //X:\xxx\xxx\ (.exe文件所在的目录+"\")
+        absPath += @"Lua\" + filePath + ".lua.txt";
+#endif
         return System.Text.Encoding.UTF8.GetBytes(File.ReadAllText(absPath));
     }
 

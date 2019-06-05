@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/dream/Desktop/FishJoy/FishJoy.exe
+C:/Users/dream/Desktop/FishJoy/f.exe
 SceneListBegin?
 Assets/Scene/Main.unity
 Assets/Scene/Loading.unity
@@ -128,6 +128,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.HotfixEmpty
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Tutorial.ByFile
 9248284975061dbeb059ec6d25d587fb Assembly-CSharp.dll:.Treasour
 dd5481137759597d614818793c90a7fe Assembly-CSharp.dll:.Shine
@@ -182,9 +183,9 @@ de39bb99456495ce50b8b27a3c6a24fa Assembly-CSharp.dll:.Gold
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LuaCallCs
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ReturnMain
 f121d6b40d7acac88e14ca72897669ab Assembly-CSharp.dll:.LoadGame
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LoadAssets
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.HotFixScript
 510f1e1119536231820f7346bf5b63a1 Assembly-CSharp.dll:.GunChange
 32d75d4b9e449c6094a673b21737c890 Assembly-CSharp.dll:.Ice
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Tutorial.CSCallLua
 a723fbedae099b288a2c2e28fddfb6d7 Assembly-CSharp.dll:.Qipao
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.HotfixEmpty

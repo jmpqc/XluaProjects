@@ -128,8 +128,8 @@ local canCreateNewFish = true
 local changeMapTimeVal = 0
 
 xlua.hotfix(CS.LoadAssetsForLua, 'Start', function(self)
-	CS.LoadAssets.LoadAsset('level3fish3','gameobject\\enemy.ab')
-	CS.LoadAssets.LoadAsset('SeaWave','gameobject\\wave.ab')
+	UnityEngine.GameObject.Find('LoadAssets'):GetComponent('LoadAssets'):LoadAsset('level3fish3', 'gameobject\\enemy.ab')
+	UnityEngine.GameObject.Find('LoadAssets'):GetComponent('LoadAssets'):LoadAsset('SeaWave','gameobject\\wave.ab')
 end)
 
 
@@ -142,7 +142,7 @@ xlua.hotfix(CS.CreateFish, 'Update', function(self)
 		if changeMapTimeVal >= 120 then
 			canCreateNewFish = false
 			changeMapTimeVal = 0
-			go = CS.LoadAssets.GetGameObject('SeaWave')
+			go = UnityEngine.GameObject.Find('LoadAssets'):GetComponent('LoadAssets'):GetGameObject('SeaWave')
 			UnityEngine.GameObject.Instantiate(go)
 		end
 		changeMapTimeVal = changeMapTimeVal + UnityEngine.Time.deltaTime
@@ -186,7 +186,7 @@ xlua.hotfix(CS.CreateFish, 'Update', function(self)
 
 --2.0.1 增加新鱼
             elseif self.ItemNum >= 73 and self.ItemNum < 83 then
-				local newFish = CS.LoadAssets.GetGameObject('level3fish3')
+				local newFish = UnityEngine.GameObject.Find('LoadAssets'):GetComponent('LoadAssets'):GetGameObject('level3fish3')
 				self:CreateGameObject(newFish)
 
            
@@ -310,3 +310,5 @@ xlua.hotfix(CS.HotfixEmpty, 'OnTriggerEnter', function(self, other)
 		UnityEngine.GameObject.Destroy(other.gameObject);
     end
 end)
+
+
